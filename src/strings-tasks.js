@@ -149,8 +149,12 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeFirstOccurrences(str, value) {
+  if (str.indexOf(value) === -1) return str;
+  return (
+    str.slice(0, str.indexOf(value)) +
+    str.slice(str.indexOf(value) + value.length)
+  );
 }
 
 /**
@@ -165,8 +169,12 @@ function removeFirstOccurrences(/* str, value */) {
  *   removeLastOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeLastOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeLastOccurrences(str, value) {
+  if (str.lastIndexOf(value) === -1) return str;
+  return (
+    str.slice(0, str.lastIndexOf(value)) +
+    str.slice(str.lastIndexOf(value) + value.length)
+  );
 }
 
 /**
@@ -318,8 +326,16 @@ function countVowels(str) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  return (
+    str
+      .split('')
+      .reverse()
+      .join('')
+      .toLowerCase()
+      .replace(/[^a-zA-Z0-9]+/g, '') ===
+    str.toLowerCase().replace(/[^a-zA-Z0-9]+/g, '')
+  );
 }
 
 /**
@@ -368,8 +384,17 @@ function reverseWords(str) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  return str
+    .split('')
+    .map((el) => {
+      let invert;
+      if (el.toLowerCase() === el.toUpperCase()) invert = el;
+      if (el.toLowerCase() === el) invert = el.toUpperCase();
+      if (el.toUpperCase() === el) invert = el.toLowerCase();
+      return invert;
+    })
+    .join('');
 }
 
 /**
